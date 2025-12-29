@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    const p1 = {
+        firstName: '张',
+        lastName: '三',
+        get fullName() {
+            return this.firstName + this.lastName
+        }
+    }
+    const p2 = {
+        firstName: '王',
+        lastName: '五',
+        get fullName() {
+            return this.firstName + this.lastName
+        }
+    }
+    const proxy = new Proxy(p1, {
+        get(target, key, receiver) {
+            console.log('get', receiver);
+            // return target[key]
+            return Reflect.get(target, key, receiver)
+        },
+        set(target, key, value,receiver) {
+            target[key] = value
+            return true
+        }
+    })
+    console.log('proxy.fullName',proxy.fullName);
+    
+    // console.log('fullName', Reflect.get(proxy, 'fullName',proxy));
+
+</script>
+
+</html>

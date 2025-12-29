@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+  <script>
+   
+
+    let total = 0
+    let quantity = 0
+
+
+    let product = {
+        price: 5,
+        quantity: quantity
+    }
+
+    let effect = () => {
+        total = product.price * product.quantity
+        console.log('total', total);
+    }
+
+    Object.defineProperty(product, 'quantity', {
+        get() {
+            console.log('get', quantity);
+            return quantity
+        },
+        set(value) {
+            console.log('set', value);
+            quantity = value
+            effect()
+        }
+    })
+
+
+    product.quantity = 10
+    
+  </script>
+</html>
